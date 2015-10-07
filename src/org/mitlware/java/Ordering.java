@@ -1,7 +1,0 @@
-package org.mitlware.java;
-
-public enum Ordering {
-	LT, EQ, GT 
-}
-
-// End ///////////////////////////////////////////////////////////////
