@@ -3,7 +3,7 @@ package org.mitlware.java;
 import com.google.java.contract.Ensures;
 
 import scala.Tuple2;
-import scala.collection.immutable.Seq;
+import scala.collection.Seq;
 
 @FunctionalInterface
 public interface Select< Entity, Env > {
