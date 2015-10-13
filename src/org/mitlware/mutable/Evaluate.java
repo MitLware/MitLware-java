@@ -1,7 +1,5 @@
 package org.mitlware.mutable;
 
-import jeep.lang.Diag;
-
 import org.mitlware.Preference;
 import org.mitlware.SearchDirection;
 
@@ -25,9 +23,6 @@ public interface Evaluate<Entity,Value> {
 		@Override		
 		public Preference prefer( State incumbent, State incoming ) {
 			
-			Diag.println( "lval " + apply( incumbent ) );
-			Diag.println( "rval " + apply( incoming ) );
-			
 			final int cmp = apply( incumbent ).compareTo( apply( incoming ) );
 			if( cmp == 0 )
 				return Preference.NO_PREFERENCE;
@@ -39,7 +34,7 @@ public interface Evaluate<Entity,Value> {
 			}
 			else {
 				assert( !isMinimizing() );
-Diag.println( );				
+		
 				if( cmp < 0 )
 					return Preference.PREFER_RIGHT;
 				else
@@ -50,7 +45,7 @@ Diag.println( );
 		////////////////////////////////
 		
 		public static <S,V extends Comparable<V>> Directional<S,V> 
-		minmizing( Evaluate<S,V> eval ) {
+		minimizing( Evaluate<S,V> eval ) {
 			return new Directional<S,V>() {
 				public SearchDirection direction() { return SearchDirection.MINIMIZING; }
 				public V apply( S x ) { return eval.apply( x ); }

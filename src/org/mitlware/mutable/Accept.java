@@ -1,7 +1,5 @@
 package org.mitlware.mutable;
 
-import jeep.lang.Diag;
-
 import org.mitlware.Preference;
 
 @FunctionalInterface
@@ -13,10 +11,6 @@ public interface Accept<State> {
 	
 	public static < S > Accept< S > always() {
 		return ( S incumbent, S incoming ) -> incoming;
-//		{
-//			Diag.println( "always " + incumbent + " " +  incoming );
-//			return incoming; 
-//		};
 	}
 	
 	public static < S > Accept< S > 

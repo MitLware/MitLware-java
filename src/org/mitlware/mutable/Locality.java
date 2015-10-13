@@ -1,11 +1,11 @@
 package org.mitlware.mutable;
 
-import scala.collection.Seq;
+import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface Locality<S> {
 
-	public Seq<S> apply( S incumbent );	
+	public Stream<S> apply( S incumbent );	
 }
 
 // End ///////////////////////////////////////////////////////////////
