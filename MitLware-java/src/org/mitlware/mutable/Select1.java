@@ -1,11 +1,11 @@
 package org.mitlware.mutable;
 
-import scala.collection.Seq;
+import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface Select1<Entity> {
 
-	public Entity apply( Seq<Entity> chooseFrom );
+	public Entity apply( Stream<Entity> chooseFrom );
 }
 
 // End ///////////////////////////////////////////////////////////////
