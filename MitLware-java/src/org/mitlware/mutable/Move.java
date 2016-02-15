@@ -1,14 +1,8 @@
 package org.mitlware.mutable;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import org.mitlware.Preference;
-import org.mitlware.util.ScalaInterop;
-
-import scala.collection.Seq;
 
 @FunctionalInterface
 public interface Move<State> {
@@ -26,7 +20,7 @@ public interface Move<State> {
 					return eval.apply( a ).compareTo(eval.apply(b));
 				}} );
 			
-			Optional<S> best = max.map( (S s) -> Prefer.preferred( incumbent, s, eval ));
+			Optional<S> best = max.map( (S s) -> eval.prefer( incumbent, s ));
 			return Optional.of( best.orElse( incumbent ) );
 		};
 	}
@@ -40,7 +34,7 @@ public interface Move<State> {
 					return eval.apply( a ).compareTo(eval.apply(b));
 				}} );
 			
-			return max.filter( (S incoming) -> eval.prefer( incumbent, incoming ) == Preference.PREFER_RIGHT );
+			return max.filter( (S incoming) -> eval.prefer( incumbent, incoming ) == incoming );
 		};
 	}
 }
