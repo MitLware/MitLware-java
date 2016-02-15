@@ -21,7 +21,6 @@ public interface Locality<State,Env> {
 					neighbours.add( p._1 );
 					env = p._2;
 				}
-				
 				return Pair.of( neighbours, env );
 			}
 		};
