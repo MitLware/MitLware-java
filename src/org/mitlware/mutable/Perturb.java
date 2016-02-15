@@ -7,12 +7,17 @@ public interface Perturb<State> {
 	
 	///////////////////////////////
 	
-	public static <S,Env> Perturb<S> from( Create<S,Env> create, Env env) {
-		return (S ignore) -> create.apply(env);
+	public static <S> Perturb<S> from( Create<S> create) {
+		return (S ignore) -> create.apply();
+	}
+
+	public static <S> Perturb<S> 
+	preferredFromLocality( Locality<S> locality, Prefer<S> prefer) {
+		return (S s) -> Prefer.preferred( locality.apply(s).stream(), prefer ).orElse( s );
 	}
 	
 	public static <S> Perturb<S> compose( Locality<S> locality, Move<S> move ) {
-		return (S incumbent) -> move.apply(incumbent, locality.apply(incumbent)).orElse(incumbent);		
+		return (S incumbent) -> move.apply(incumbent, locality.apply(incumbent).stream()).orElse(incumbent);		
 	}
 }
 

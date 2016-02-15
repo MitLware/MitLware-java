@@ -1,14 +1,23 @@
 package org.mitlware.mutable;
 
-import org.mitlware.Preference;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.stream.Stream;
+
+// import org.mitlware.Preference;
 
 @FunctionalInterface
 public interface Prefer< State > {
 
-	public Preference prefer(State left,State right);
+	public State prefer(State left,State right);
+	
+	public static <S> Optional<S> preferred( Stream<S> s, Prefer<S> prefer ) {
+		return s.reduce( (S a, S b) -> prefer.prefer(a,b) );
+	}
 	
 	///////////////////////////////
 	
+	/********
 	public static <S> S preferred(S incumbent, S incoming, Prefer<S> prefer) {
 		if( prefer.prefer( incumbent, incoming ) == Preference.PREFER_LEFT )
 			return incumbent;
@@ -26,31 +35,14 @@ public interface Prefer< State > {
 				return p;
 		};
 	}
+	********/
 	
-	/*********
 	///////////////////////////////
 	
 	public static <E,V extends Comparable<V>> Prefer<E> 
 	from( Evaluate.Directional<E,V> eval ) {
-		return (E left, E right) -> {
-			final V leftEval = eval.apply( left );
-			final V rightEval = eval.apply( right );
-			
-			final int cmp = leftEval.compareTo(rightEval);
-			if( cmp < 0 ) {
-				return eval.isMinimizing() ? 
-					Preference.PREFER_LEFT : Preference.PREFER_RIGHT;  
-			}
-			else if( cmp > 0 ) {
-				return eval.isMinimizing() ? 
-					Preference.PREFER_RIGHT : Preference.PREFER_LEFT;				
-			}
-			else {
-				return Preference.NO_PREFERENCE;
-			}
-		};
+		return (E left, E right) -> eval.prefer(left,right);
 	}
-	*********/
 }
 
 // End ///////////////////////////////////////////////////////////////

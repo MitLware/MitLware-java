@@ -1,7 +1,5 @@
 package org.mitlware.mutable;
 
-import org.mitlware.Preference;
-
 @FunctionalInterface
 public interface Accept<State> {
 
@@ -13,16 +11,16 @@ public interface Accept<State> {
 		return ( S incumbent, S incoming ) -> incoming;
 	}
 	
-	public static < S > Accept< S > 
-	improving( Prefer< S > prefer ) {
-		return ( S incumbent, S incoming ) ->  
-			prefer.prefer( incumbent, incoming ) == Preference.PREFER_RIGHT ? incoming : incumbent; 
+	public static < S, V extends Comparable< V > > 
+	Accept< S > 
+	improving( Evaluate.Directional< S, V > eval ) {
+		return ( S incumbent, S incoming ) -> eval.compare( incumbent, incoming ) < 0 ? incoming : incumbent;    
 	}
 
-	public static < S > Accept< S > 
-	improvingOrEqual( Prefer< S > prefer ) {
-		return ( S incumbent, S incoming ) ->  
-			prefer.prefer( incumbent, incoming ) == Preference.PREFER_LEFT ? incumbent : incoming; 
+	public static < S, V extends Comparable< V > > 
+	Accept< S > 
+	improvingOrEqual( Evaluate.Directional< S, V > eval ) {
+		return ( S incumbent, S incoming ) -> eval.compare( incumbent, incoming ) <= 0 ? incoming : incumbent; 
 	}
 }
 

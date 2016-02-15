@@ -1,9 +1,9 @@
 package org.mitlware.mutable;
 
 @FunctionalInterface
-public interface Create<Entity,Env> {
+public interface Create<Entity> {
 
-	public Entity apply( Env env );
+	public Entity apply();
 }
 
 // End ///////////////////////////////////////////////////////////////
