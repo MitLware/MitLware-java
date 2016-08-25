@@ -2,10 +2,12 @@ package org.mitlware.immutable;
 
 import java.util.stream.Stream;
 
-@FunctionalInterface
-public interface Select1<Entity> {
+import org.mitlware.util.Pair;
 
-	public Entity apply( Stream<Entity> chooseFrom );
+@FunctionalInterface
+public interface Select1<Entity,Env> {
+
+	public Pair< Entity, Env > apply( Stream<Entity> chooseFrom, Env env );
 }
 
 // End ///////////////////////////////////////////////////////////////

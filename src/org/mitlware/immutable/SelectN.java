@@ -3,10 +3,12 @@ package org.mitlware.immutable;
 import java.util.List;
 import java.util.stream.Stream;
 
-@FunctionalInterface
-public interface SelectN<Entity> {
+import org.mitlware.util.Pair;
 
-	public List<Entity> apply( Stream<Entity> chooseFrom, int n );
+@FunctionalInterface
+public interface SelectN<Entity,Env> {
+
+	public Pair<List<Entity>,Env> apply( Stream<Entity> chooseFrom, int n, Env env );
 }
 
 // End ///////////////////////////////////////////////////////////////

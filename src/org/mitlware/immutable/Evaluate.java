@@ -10,7 +10,7 @@ public interface Evaluate<Entity,Value,Env> {
 	public Pair< Value, Env > apply( Entity x, Env e );
 
 	public static < S, V, E > Evaluate< S, V, E > 
-	lift( org.mitlware.mutable.Evaluate< S, V > mutable ) {
+	fromMutable( org.mitlware.mutable.Evaluate< S, V > mutable ) {
 		return ( S x, E env ) -> Pair.of( mutable.apply( x ), env );
 	}
 	
