@@ -2,9 +2,9 @@
 This repository contains Java interfaces for 'Metaheuristics in the Large', 
 corresponding to the most common metaheuristic components (```Pertub,Accept,Evaluate``` etc).
 
-There are two parallel sets of interfaces: mutable and immutable. The distinction is that implementations of ```immutable``` interfaces are required to be pure functions (i.e. without side-effects). In contrast, implementations of ```mutable``` interfaces may be stateful, e.g. successive applications of a mutable ```Accept``` to the same arguments are allowed to yield different results.
+There are two parallel sets of interfaces: mutable and immutable. The distinction is that implementations of ```org.mitlware.immutable``` interfaces are required to be pure functions (i.e. without side-effects). In contrast, implementations of ```org.mitlware.mutable``` interfaces may be stateful, e.g. successive applications of a mutable ```Accept``` to the same arguments are allowed to yield different results.
 
-Stateful components are traditional practice, but have the following drawbacks:
+Stateful components are traditional practice in metaheuristic frameworks, but have the following drawbacks:
 * They pose difficulties for algorithm configuration tools that assemble components automatically, since hidden state means that 
 the configurator:
  * Cannot automatically manage dependencies between components. 
@@ -33,5 +33,5 @@ public interface Perturb<Sol> {
 }
 ```
 
-An immutable version is provided for each mutable component.
+Each mutable component has an immutable version that corresponds in the same manner.
 
