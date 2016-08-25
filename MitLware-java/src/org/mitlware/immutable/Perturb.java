@@ -20,7 +20,7 @@ public interface Perturb<State, Env>  {
 //	}
 	
 	public static < S, E > Perturb< S, E > 
-	lift( org.mitlware.mutable.Perturb< S > mutable ) {
+	fromMutable( org.mitlware.mutable.Perturb< S > mutable ) {
 		return ( S incumbent, E env ) -> Pair.of( mutable.apply( incumbent ), env );
 	}
 	

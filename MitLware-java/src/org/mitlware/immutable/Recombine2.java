@@ -1,9 +1,11 @@
 package org.mitlware.immutable;
 
-@FunctionalInterface
-public interface Recombine2<S> {
+import org.mitlware.util.Pair;
 
-	public S apply( S a, S b );
+@FunctionalInterface
+public interface Recombine2<Sol,Env> {
+
+	public Pair< Sol, Env > apply( Sol a, Sol b, Env env );
 }
 
 // End ///////////////////////////////////////////////////////////////

@@ -29,7 +29,7 @@ public interface Locality<State,Env> {
 	///////////////////////////////
 	
 	public static < S, E > Locality< S, E > 
-	lift( org.mitlware.mutable.Locality< S > mutable ) {
+	fromMutable( org.mitlware.mutable.Locality< S > mutable ) {
 		return ( S incumbent, E env ) -> Pair.of( mutable.apply( incumbent ), env );
 	}
 }

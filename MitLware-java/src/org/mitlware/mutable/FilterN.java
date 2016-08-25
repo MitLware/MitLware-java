@@ -1,12 +1,11 @@
 package org.mitlware.mutable;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @FunctionalInterface
-public interface Choose1<Entity> {
+public interface FilterN<Entity> {
 
-	public Optional<Entity> apply( Stream<Entity> chooseFrom );
+	public Stream<Entity> apply( Stream<Entity> chooseFrom, int n );
 }
 
 // End ///////////////////////////////////////////////////////////////

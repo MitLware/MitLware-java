@@ -18,7 +18,7 @@ public interface Prefer< State, Env > {
 	}
 	
 	public static < S, E > Prefer< S, E > 
-	lift( org.mitlware.mutable.Prefer< S > mutable ) {
+	fromMutable( org.mitlware.mutable.Prefer< S > mutable ) {
 		return ( S left, S right, E env ) -> Pair.of( mutable.prefer( left, right ), env );
 	}
 	
